@@ -1,0 +1,153 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "dashboard": "Tablero",
+    "profile": "Perfil",
+    "logout": "Cerrar Sesión"
+  },
+  "auth": {
+    "login": "Iniciar Sesión",
+    "register": "Registrarse",
+    "email": "Correo Electrónico",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar Contraseña",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "phone": "Teléfono",
+    "address": "Dirección",
+    "city": "Ciudad",
+    "state": "Estado",
+    "zipCode": "Código Postal"
+  },
+  "userTypes": {
+    "client": "Cliente",
+    "runner": "Mandadero",
+    "selectUserType": "Seleccionar Tipo de Usuario",
+    "registerAsClient": "Registrarse como Cliente",
+    "registerAsRunner": "Registrarse como Mandadero"
+  },
+  "dashboard": {
+    "welcome": "Bienvenido",
+    "myErrands": "Mis Mandados",
+    "availableErrands": "Mandados Disponibles",
+    "assignedErrands": "Mandados Asignados",
+    "completedErrands": "Mandados Completados",
+    "stats": "Estadísticas",
+    "totalErrands": "Total de Mandados",
+    "pendingErrands": "Mandados Pendientes",
+    "inProgressErrands": "Mandados en Progreso"
+  },
+  "errands": {
+    "title": "Título",
+    "description": "Descripción",
+    "category": "Categoría",
+    "price": "Precio",
+    "location": "Ubicación",
+    "status": "Estado",
+    "dueDate": "Fecha de Vencimiento",
+    "createErrand": "Crear Mandado",
+    "editErrand": "Editar Mandado",
+    "deleteErrand": "Eliminar Mandado",
+    "acceptErrand": "Aceptar Mandado",
+    "startErrand": "Iniciar Mandado",
+    "completeErrand": "Completar Mandado",
+    "cancelErrand": "Cancelar Mandado",
+    "viewDetails": "Ver Detalles"
+  },
+  "status": {
+    "pending": "Pendiente",
+    "inProgress": "En Progreso",
+    "completed": "Completado",
+    "cancelled": "Cancelado",
+    "all": "Todos"
+  },
+  "categories": {
+    "grocery": "Compras",
+    "delivery": "Entrega",
+    "pickup": "Recolección",
+    "shopping": "Compras",
+    "cleaning": "Limpieza",
+    "maintenance": "Mantenimiento",
+    "other": "Otro"
+  },
+  "buttons": {
+    "submit": "Enviar",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "back": "Volver",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "refresh": "Actualizar",
+    "filter": "Filtrar",
+    "search": "Buscar",
+    "clear": "Limpiar"
+  },
+  "messages": {
+    "success": {
+      "loginSuccess": "Inicio de sesión exitoso",
+      "registrationSuccess": "Registro exitoso",
+      "errandCreated": "Mandado creado exitosamente",
+      "errandUpdated": "Mandado actualizado exitosamente",
+      "errandDeleted": "Mandado eliminado exitosamente",
+      "errandAccepted": "Mandado aceptado exitosamente",
+      "errandCompleted": "Mandado completado exitosamente"
+    },
+    "error": {
+      "loginFailed": "Error al iniciar sesión",
+      "registrationFailed": "Error al registrarse",
+      "invalidCredentials": "Credenciales inválidas",
+      "requiredFields": "Por favor complete todos los campos requeridos",
+      "passwordMismatch": "Las contraseñas no coinciden",
+      "networkError": "Error de conexión. Inténtelo de nuevo.",
+      "serverError": "Error del servidor. Inténtelo más tarde.",
+      "unauthorized": "No autorizado",
+      "notFound": "No encontrado",
+      "errandNotFound": "Mandado no encontrado",
+      "operationFailed": "Operación fallida"
+    },
+    "loading": "Cargando...",
+    "noData": "No hay datos disponibles",
+    "noErrands": "No hay mandados disponibles",
+    "noResults": "No se encontraron resultados"
+  },
+  "profile": {
+    "personalInfo": "Información Personal",
+    "contactInfo": "Información de Contacto",
+    "accountSettings": "Configuración de Cuenta",
+    "preferences": "Preferencias",
+    "language": "Idioma",
+    "notifications": "Notificaciones",
+    "privacy": "Privacidad",
+    "security": "Seguridad",
+    "changePassword": "Cambiar Contraseña",
+    "updateProfile": "Actualizar Perfil"
+  },
+  "runner": {
+    "vehicleType": "Tipo de Vehículo",
+    "licenseNumber": "Número de Licencia",
+    "experience": "Experiencia",
+    "availability": "Disponibilidad",
+    "rating": "Calificación",
+    "completedJobs": "Trabajos Completados",
+    "workingHours": "Horario de Trabajo",
+    "serviceAreas": "Áreas de Servicio"
+  },
+  "client": {
+    "preferences": "Preferencias",
+    "paymentMethods": "Métodos de Pago",
+    "orderHistory": "Historial de Pedidos",
+    "favoriteRunners": "Mandaderos Favoritos",
+    "billingAddress": "Dirección de Facturación",
+    "deliveryInstructions": "Instrucciones de Entrega"
+  },
+  "footer": {
+    "allRightsReserved": "Todos los derechos reservados",
+    "privacyPolicy": "Política de Privacidad",
+    "termsOfService": "Términos de Servicio",
+    "contactUs": "Contáctanos",
+    "support": "Soporte",
+    "aboutUs": "Acerca de Nosotros"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "my-errand-app",
+    "version": "1.0.0",
+      "main": "server.js",
+        "scripts": {
+    "start": "node server.js",
+      "dev": "nodemon server.js",
+        "client": "npm --prefix client run dev",
+          "server": "nodemon server.js",
+            "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+    "author": "",
+      "license": "ISC",
+        "dependencies": {
+    "@paypal/react-paypal-js": "^8.8.3",
+      "@react-google-maps/api": "^2.20.7",
+        "@stripe/react-stripe-js": "^3.7.0",
+          "@stripe/stripe-js": "^7.4.0",
+            "axios": "^1.10.0",
+              "bcryptjs": "^3.0.2",
+                "cors": "^2.8.5",
+                  "dotenv": "^17.1.0",
+                    "express": "^5.1.0",
+                      "jsonwebtoken": "^9.0.2",
+                        "mongoose": "^8.16.2",
+                          "morgan": "^1.10.0",
+                            "mysql2": "^3.14.1",
+                              "nodemailer": "^7.0.5",
+                                "socket.io": "^4.8.1",
+                                  "workbox-core": "^7.3.0",
+                                    "workbox-precaching": "^7.3.0",
+                                      "workbox-routing": "^7.3.0",
+                                        "workbox-strategies": "^7.3.0"
+  }
+}
