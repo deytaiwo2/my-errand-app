@@ -1,3 +1,7 @@
+const express = require('express');
+const db = require('../config/db.mysql').pool;
+const router = express.Router();
+
 router.get('/payments', async (req, res) => {
     const [rows] = await db.execute(`
       SELECT p.*, e.pickup, e.dropoff, c.name AS client
@@ -8,3 +12,5 @@ router.get('/payments', async (req, res) => {
     `);
     res.json(rows);
 });
+
+module.exports = router;

@@ -33,6 +33,8 @@ const allowedOrigins = new Set([
   process.env.CLIENT_URL || 'http://localhost:3000',
   'http://localhost:3000',
   'http://127.0.0.1:3000',
+  'http://localhost:3001',
+  'http://127.0.0.1:3001',
   'http://localhost',
   'http://127.0.0.1'
 ]);
@@ -71,7 +73,8 @@ const { verifyToken } = require('./routes/auth.routes');
 app.use('/api/auth', require('./routes/auth.routes'));
 app.use('/api/errands', require('./routes/errands.routes'));
 app.use('/api/wallet', verifyToken, require('./routes/wallet.routes'));
-app.use('/api/payment', require('./routes/payment.routes'));
+app.use('/api/payments', verifyToken, require('./routes/payment.routes'));
+app.use('/api/admin', require('./routes/admin.routes'));
 // Mount client and agent routes for frontend AuthService endpoints
 app.use('/api/clients', require('./routes/client.routes'));
 app.use('/api/agents', require('./routes/agent.routes'));
