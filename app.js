@@ -36,8 +36,21 @@ const allowedOrigins = new Set([
   'http://localhost:3001',
   'http://127.0.0.1:3001',
   'http://localhost',
-  'http://127.0.0.1'
+  'http://127.0.0.1',
+  // Production domains
+  'https://my-errand-app.pages.dev',
+  'https://*.pages.dev',
+  'https://my-errand-app.vercel.app',
+  'https://*.vercel.app',
+  'https://my-errand-app.netlify.app',
+  'https://*.netlify.app'
 ]);
+
+// Add custom production URL if set
+if (process.env.FRONTEND_URL) {
+  allowedOrigins.add(process.env.FRONTEND_URL);
+}
+
 app.use(cors({
   origin: function (origin, callback) {
     // Allow non-browser requests (no origin) and allowed origins

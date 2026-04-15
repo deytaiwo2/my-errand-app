@@ -86,16 +86,53 @@ npm run build
 npm run build:prod
 ```
 
-## Available scripts
+## Deployment
 
-- `npm start` — starts the backend server only
-- `npm run dev` — starts both backend and frontend concurrently
-- `npm run server` — starts backend with `nodemon`
-- `npm run client` — starts the frontend dev server
-- `npm run build` — builds the frontend production bundle
-- `npm run build:prod` — builds the frontend and starts the backend
-- `npm run install-client` — installs dependencies for the React client
-- `npm run setup-db` — runs database setup script
+### Production Architecture
+
+- **Frontend**: Deployed to Cloudflare Pages (static hosting)
+- **Backend**: Deployed to Render (Node.js hosting)
+- **Database**: MongoDB Atlas (cloud database)
+
+### Backend Deployment (Render)
+
+1. Create a new Web Service on Render
+2. Connect your GitHub repository
+3. Set the following environment variables:
+   - `MONGO_URI`: Your MongoDB Atlas connection string
+   - `JWT_SECRET`: A secure random string
+   - `STRIPE_SECRET_KEY`: Your Stripe live secret key
+   - `PAYPAL_CLIENT_ID`: Your PayPal client ID
+   - `PAYPAL_CLIENT_SECRET`: Your PayPal client secret
+   - `CLIENT_URL`: Your Cloudflare Pages domain (e.g., `https://your-app.pages.dev`)
+   - `EMAIL_USER`: Your email for notifications
+   - `EMAIL_PASSWORD`: Your email app password
+   - `NODE_ENV`: `production`
+
+4. Set build command: `npm install`
+5. Set start command: `npm start`
+
+### Frontend Deployment (Cloudflare Pages)
+
+1. Create a new Pages project on Cloudflare
+2. Connect your GitHub repository
+3. Set build settings:
+   - Build command: `cd client && npm run build`
+   - Build output directory: `client/dist`
+4. Set environment variable:
+   - `API_BASE`: Your Render backend URL (e.g., `https://your-app.onrender.com`)
+
+### Database Setup
+
+1. Create a MongoDB Atlas cluster
+2. Get your connection string and add it to Render environment variables
+3. The app will automatically create collections and indexes on first run
+
+### Post-Deployment
+
+1. Update CORS in `app.js` if needed for your specific domain
+2. Test API endpoints and frontend-backend communication
+3. Verify payment processing works in production
 
 ## API highlights
 
