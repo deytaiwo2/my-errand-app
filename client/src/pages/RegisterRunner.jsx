@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
+import { apiUrl } from '../api'
 import './Auth.css'
 
 function RegisterRunner() {
@@ -99,7 +100,7 @@ function RegisterRunner() {
 
       delete registrationData.confirmPassword
 
-      const response = await fetch('/api/auth/register', {
+      const response = await fetch(apiUrl('/api/auth/register'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

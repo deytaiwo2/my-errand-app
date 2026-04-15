@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import './Dashboard.css';
 import axios from 'axios';
+import { apiUrl } from '../api';
 
 const RunnerDashboard = ({ user }) => {
   const [availableErrands, setAvailableErrands] = useState([]);
@@ -60,14 +61,14 @@ const RunnerDashboard = ({ user }) => {
   const fetchErrands = async () => {
     try {
       const [availableResponse, assignedResponse] = await Promise.all([
-        fetch('/api/errands/available', {
+        fetch(apiUrl('/api/errands/available'), {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': 'application/json'
           }
         }),
-        fetch('/api/errands/runner', {
+        fetch(apiUrl('/api/errands/runner'), {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -95,7 +96,7 @@ const RunnerDashboard = ({ user }) => {
 
   const acceptErrand = async (errandId) => {
     try {
-      const response = await fetch(`/api/errands/${errandId}/accept`, {
+      const response = await fetch(apiUrl(`/api/errands/${errandId}/accept`), {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -118,7 +119,7 @@ const RunnerDashboard = ({ user }) => {
 
   const updateErrandStatus = async (errandId, newStatus) => {
     try {
-      const response = await fetch(`/api/errands/${errandId}/status`, {
+      const response = await fetch(apiUrl(`/api/errands/${errandId}/status`), {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,

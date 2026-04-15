@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import './Dashboard.css';
 import axios from 'axios';
+import { apiUrl } from '../api';
 
 const ClientDashboard = ({ user, balances }) => {
   const [errands, setErrands] = useState([]);
@@ -53,7 +54,7 @@ const ClientDashboard = ({ user, balances }) => {
 
   const fetchClientErrands = async () => {
     try {
-      const response = await fetch('/api/errands/client', {
+      const response = await fetch(apiUrl('/api/errands/client'), {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,

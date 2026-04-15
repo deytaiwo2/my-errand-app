@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { toast } from 'react-toastify'
+import { apiUrl } from '../api'
 
 function Profile({ user, setUser }) {
   const [isEditing, setIsEditing] = useState(false)
@@ -30,7 +31,7 @@ function Profile({ user, setUser }) {
         return
       }
 
-      const response = await fetch('/api/auth/profile', {
+      const response = await fetch(apiUrl('/api/auth/profile'), {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

@@ -7,6 +7,8 @@ import LanguageSwitcher from './components/LanguageSwitcher'
 import { TranslationProvider } from './contexts/TranslationContext'
 import './App.css'
 
+const API_BASE = process.env.API_BASE || ''
+
 // Lazy load components
 const Home = React.lazy(() => import('./pages/Home'))
 const PayNow = React.lazy(() => import('./pages/PayNow'))
@@ -50,6 +52,10 @@ function App() {
 
   // Check for existing authentication on app load
   useEffect(() => {
+    if (API_BASE) {
+      axios.defaults.baseURL = API_BASE
+    }
+
     const token = localStorage.getItem('token')
     const savedUser = localStorage.getItem('user')
 

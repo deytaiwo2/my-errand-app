@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
+import { apiUrl } from '../api'
 import './Auth.css'
 
 function Login({ onLogin }) {
@@ -20,8 +21,6 @@ function Login({ onLogin }) {
     if (error) setError('')
   }
 
-  const API_BASE = window.location.port === '3000' ? '' : 'http://localhost:5000'
-
   const handleSubmit = async (e) => {
     e.preventDefault()
     setIsLoading(true)
@@ -29,7 +28,7 @@ function Login({ onLogin }) {
 
     try {
       // Call the API
-      const response = await fetch(`${API_BASE}/api/auth/login`, {
+      const response = await fetch(apiUrl('/api/auth/login'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -74,7 +73,7 @@ function Login({ onLogin }) {
 
     try {
       // Call the demo login API
-      const response = await fetch(`${API_BASE}/api/auth/demo-login`, {
+      const response = await fetch(apiUrl('/api/auth/demo-login'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

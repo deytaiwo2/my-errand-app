@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = (env, argv) => {
   const isDevelopment = argv.mode === 'development';
@@ -51,6 +52,9 @@ module.exports = (env, argv) => {
         template: './public/index.html',
         inject: 'body',
         minify: !isDevelopment,
+      }),
+      new webpack.DefinePlugin({
+        'process.env.API_BASE': JSON.stringify(process.env.API_BASE || '')
       }),
     ],
     devServer: {

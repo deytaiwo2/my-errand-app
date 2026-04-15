@@ -1,6 +1,6 @@
 # Cloudflare Deployment Guide
 
-This guide will help you deploy your my-errand-app to Cloudflare Pages (frontend) and Cloudflare Workers (backend).
+This guide will help you deploy your my-errand-app frontend to Cloudflare Pages. The backend remains hosted externally because the current Express backend is not Cloudflare Workers-compatible.
 
 ## Architecture Overview
 
@@ -11,8 +11,8 @@ This guide will help you deploy your my-errand-app to Cloudflare Pages (frontend
 └────────────┬────────────────────────┘
              │ API Calls
 ┌────────────▼────────────────────────┐
-│   Cloudflare Workers (Serverless)   │
-│      Node.js Backend Handler        │
+│    External Backend Host / API      │
+│      Express + Database Support     │
 └────────────┬────────────────────────┘
              │ Database Queries
 ┌────────────▼────────────────────────┐
@@ -64,36 +64,15 @@ This creates a `client/dist` folder with your static assets.
 ### 2.2 Add Environment Variables
 
 In Pages settings, add environment variables:
-- `VITE_API_URL`: Your Cloudflare Workers URL (e.g., `https://api.myapp.workers.dev`)
+- `API_BASE`: Your backend URL (e.g., `https://api.example.com`)
 
-## Step 3: Deploy Backend to Cloudflare Workers
+## Step 3: Host Backend Separately
 
-> Note: This project currently deploys only the frontend to Cloudflare Pages.
-> The Express backend depends on Node APIs and database drivers that are not compatible with Cloudflare Workers without a refactor.
+The frontend is deployed to Cloudflare Pages. The backend should remain hosted on an external server, VPS, or platform that supports Node.js and the database drivers used by this app.
 
-### 3.1 Create wrangler.toml
-
-Already created in project root. Update with your settings.
-
-### 3.2 Add Environment Variables
-
-Create `.env.production` and add to Cloudflare:
-```
-DATABASE_URL=your_database_connection_string
-JWT_SECRET=your_jwt_secret
-STRIPE_SECRET_KEY=your_stripe_key
-PAYPAL_SECRET=your_paypal_secret
-```
-
-Bind them in `wrangler.toml` (see file for structure).
-
-### 3.3 Deploy Worker
-
-```bash
-wrangler deploy
-```
-
-Your backend is now live at `https://<project-name>.<account>.workers.dev`
+- Keep the Express backend running on a separate host.
+- Set the backend URL in Cloudflare Pages build environment as `API_BASE`.
+- Do not attempt to deploy the current backend to Cloudflare Workers without a full backend rewrite.
 
 ## Step 4: Connect Frontend to Backend
 
