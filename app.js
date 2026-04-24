@@ -37,7 +37,9 @@ const allowedOrigins = new Set([
   'http://127.0.0.1:3001',
   'http://localhost',
   'http://127.0.0.1',
+  'http://myerrand.name.ng',
   // Production domains
+  'https://myerrand.name.ng',
   'https://my-errand-app.pages.dev',
   'https://*.pages.dev',
   'https://my-errand-app.vercel.app',

@@ -120,7 +120,8 @@ npm run build:prod
    - Build command: `cd client && npm run build`
    - Build output directory: `client/dist`
 4. Set environment variable:
-   - `API_BASE`: Your Render backend URL (e.g., `https://your-app.onrender.com`)
+   - `API_BASE`: Your backend URL (e.g., `https://your-app.onrender.com`)
+5. Configure a custom domain in Cloudflare Pages to `https://myerrand.name.ng`
 
 ### Database Setup
 

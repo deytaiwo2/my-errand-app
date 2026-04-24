@@ -1,121 +1,67 @@
 # Backend Deployment Guide
 
-## Option 1: Railway (Recommended - Easiest)
+## Render + MongoDB Deployment (Your Choice)
 
-Railway provides Node.js hosting with built-in database support.
+Since you're using Render for Node.js and MongoDB for the database, here's your deployment guide.
 
-### 1. Create Railway Account
-- Go to [railway.app](https://railway.app)
+### 1. Set up MongoDB Atlas
+1. Go to [MongoDB Atlas](https://cloud.mongodb.com/)
+2. Create a free account
+3. Create a new cluster (free tier)
+4. Create a database user
+5. Get your connection string (looks like: `mongodb+srv://username:password@cluster.mongodb.net/database`)
+
+### 2. Deploy to Render
+
+#### Create Render Account
+- Go to [render.com](https://render.com)
 - Sign up with GitHub
 
-### 2. Create New Project
-- Click "New Project"
-- Choose "Deploy from GitHub repo"
-- Connect your repository
+#### Create Web Service
+1. Click **"New"** → **"Web Service"**
+2. Connect your GitHub repo (`my-errand-app`)
+3. Configure the service:
+   - **Name**: `my-errand-app-backend`
+   - **Runtime**: `Node`
+   - **Build Command**: `npm install`
+   - **Start Command**: `npm start`
+   - **Plan**: Free tier is fine to start
 
-### 3. Configure Environment Variables
-In Railway dashboard, go to your project → Variables, and add:
+#### Environment Variables
+Add these environment variables in Render:
 
 ```
-PORT=5000
+# Server Configuration
 NODE_ENV=production
+PORT=10000
 FRONTEND_URL=https://yourdomain.com
 
-# Database (Railway provides PostgreSQL, but we'll use external MySQL/MongoDB)
-MYSQL_HOST=your-external-mysql-host
-MYSQL_USER=your-mysql-user
-MYSQL_PASSWORD=your-mysql-password
-MYSQL_DATABASE=your-database-name
+# Database (MongoDB only)
+USE_MONGO=true
+MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/database
 
-MONGO_URI=your-mongodb-connection-string
-
-JWT_SECRET=generate-a-secure-random-string
+# Authentication
+JWT_SECRET=your-super-secure-jwt-secret-here-make-it-long-and-random
 JWT_EXPIRY=7d
 
+# Payment Processing
 PAYPAL_CLIENT_ID=your-paypal-client-id
 PAYPAL_SECRET=your-paypal-secret
-
 STRIPE_SECRET=sk_test_your-stripe-secret-key
 ```
 
-### 4. Deploy
-Railway will automatically detect it's a Node.js app and deploy it.
+### 3. Deploy
+Render will build and deploy your app automatically.
 
-## Option 2: Render
+### 4. Get Your Backend URL
+Once deployed, Render will give you a URL like: `https://my-errand-app-backend.onrender.com`
 
-### 1. Create Render Account
-- Go to [render.com](https://render.com)
-- Sign up
+### 5. Configure Cloudflare Pages
+1. Go to your Cloudflare Pages project
+2. **Settings** → **Environment variables**
+3. Add: `API_BASE=https://your-backend-url.onrender.com`
 
-### 2. Create Web Service
-- Click "New" → "Web Service"
-- Connect your GitHub repo
-- Configure:
-  - Runtime: Node
-  - Build Command: `npm install`
-  - Start Command: `npm start`
-
-### 3. Add Environment Variables
-Same variables as above.
-
-## Option 3: DigitalOcean App Platform
-
-### 1. Create App Spec
-Create `app.yaml` in your project root:
-
-```yaml
-name: my-errand-app-backend
-services:
-- name: backend
-  source_dir: /
-  github:
-    repo: Todyents/my-errand-app
-    branch: main
-  run_command: npm start
-  environment_slug: node-js
-  instance_count: 1
-  instance_size_slug: basic-xxs
-  envs:
-  - key: PORT
-    value: "5000"
-  - key: NODE_ENV
-    value: "production"
-  # Add other environment variables here
-```
-
-### 2. Deploy to DigitalOcean
-- Go to DigitalOcean App Platform
-- Create app from source code
-- Upload or connect repo
-
-## Database Setup
-
-### For MySQL:
-- Use a cloud database like PlanetScale, AWS RDS, or DigitalOcean Managed Database
-- Get the connection details and update environment variables
-
-### For MongoDB:
-- Use MongoDB Atlas (free tier available)
-- Get the connection string and update MONGO_URI
-
-## After Deployment
-
-1. **Update Cloudflare Pages API_BASE**
-   - In Cloudflare Pages settings → Environment variables
-   - Set `API_BASE` to your backend URL (e.g., `https://my-errand-app-backend.railway.app`)
-
-2. **Test the Integration**
-   - Visit your frontend domain
-   - Try logging in or creating an account
-   - Check browser console for API errors
-
-3. **Update CORS (if needed)**
-   - Add your production domain to the `allowedOrigins` in `app.js`
-   - Or set `FRONTEND_URL` environment variable
-
-## Troubleshooting
-
-- **CORS errors**: Check that your frontend domain is in the allowed origins
-- **Database connection**: Verify database credentials and network access
-- **API_BASE not set**: Make sure Cloudflare Pages has the correct API_BASE variable
-- **Port issues**: Railway/Render automatically assign ports, so PORT variable might not be needed
+### 6. Test the Deployment
+- Visit your frontend domain
+- Try registering/logging in
+- Check browser console for errors

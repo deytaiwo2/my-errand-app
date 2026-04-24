@@ -35,7 +35,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: 'my-errand-app'
+          projectName: ${{ secrets.CLOUDFLARE_PAGES_PROJECT_NAME }}
           directory: client/dist
           productionBranch: main
 

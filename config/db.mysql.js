@@ -5,14 +5,15 @@ const pool = mysql.createPool({
   password: process.env.MYSQL_PASSWORD || '',
   database: process.env.MYSQL_DATABASE || 'errandsplace',
   ssl: false,
-  acquireTimeout: 10000,
-  timeout: 10000
+  waitForConnections: true,
+  connectionLimit: parseInt(process.env.DB_CONNECTION_LIMIT, 10) || 10,
+  connectTimeout: parseInt(process.env.DB_ACQUIRE_TIMEOUT, 10) || 10000,
 });
 
 module.exports = () => {
   pool.getConnection((err, connection) => {
     if (err) {
-      console.error('❌ MySQL Connection Error:', err.message);
+      console.error('❌ MySQL Connection Error:', err);
       console.error('⚠️  App will continue with MongoDB only');
       return;
     }
